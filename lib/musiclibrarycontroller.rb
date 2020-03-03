@@ -41,4 +41,7 @@ class MusicLibraryController
         puts "#{j+1}. #{i.artist.name} - #{i.name} - #{i.genre.name}"
       end 
   end 
+  
+  def list_artists
+    Artist.all.sort {
 end 

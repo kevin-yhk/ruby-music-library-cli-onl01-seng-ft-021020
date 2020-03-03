@@ -1,5 +1,6 @@
 class Genre 
   
+  extend 
   attr_accessor :name, :songs
   
   @@all = [] 

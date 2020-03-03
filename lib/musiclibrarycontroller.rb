@@ -4,4 +4,9 @@ class MusicLibraryController
     @new = MusicImporter.new(path)
     @new.import 
   end 
+  
+  def call 
+    input = ""
+    while input != "exit" do 
+      
 end 

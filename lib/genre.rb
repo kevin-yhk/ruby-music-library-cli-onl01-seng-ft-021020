@@ -1,6 +1,6 @@
 class Genre 
   
-  extend 
+  extend Concerns::Findable
   attr_accessor :name, :songs
   
   @@all = [] 

@@ -6,8 +6,8 @@ class MusicLibraryController
   end 
 
   def call 
-    input = ""
-    while input != "exit" do 
+    user_input = ""
+    while user_input != "exit" do 
       puts "Welcome to your music library!"
       puts "To list all of your songs, enter 'list songs'."
       puts "To list all of the artists in your library, enter 'list artists'."
@@ -19,7 +19,7 @@ class MusicLibraryController
       puts "What would you like to do?"
       input = gets.chomp
 
-      case input 
+      case user_input 
       when "list songs"
         list_songs
       when "list artists"
@@ -37,53 +37,49 @@ class MusicLibraryController
   end 
 
   def list_songs
-    # binding.pry
-    Song.all.sort {|song_a,song_b| song_a.name<=>song_b.name}.each_with_index do |i, j| 
-        # binding pry 
-        puts "#{j+1}. #{i.artist.name} - #{i.name} - #{i.genre.name}"
+    Song.all.sort {|song1,song2| song1.name<=>song2.name}.each_with_index do |x, y| 
+        puts "#{y+1}. #{x.artist.name} - #{x.name} - #{x.genre.name}"
       end 
   end 
 
   def list_artists
-    Artist.all.sort{|artist_a, artist_b| artist_a.name <=> artist_b.name}.each_with_index do |i, j|
-      puts "#{j+1}. #{i.name}"
+    Artist.all.sort{|artist1, artist2| artist1.name <=> artist2.name}.each_with_index do |x, y|
+      puts "#{y+1}. #{x.name}"
     end 
   end 
 
   def list_genres 
-    Genre.all.sort{|genre_a, genre_b| genre_a.name <=> genre_b.name}.each_with_index do |i, j|
-      puts "#{j+1}. #{i.name}"
+    Genre.all.sort{|genre1, genre2| genre1.name <=> genre2.name}.each_with_index do |x, y|
+      puts "#{y+1}. #{x.name}"
     end 
   end 
 
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
-    input = gets.chomp 
-    # binding.pry
+    user_input = gets.chomp 
     if artist = Artist.find_by_name(input)
-      artist.songs.sort{|a,b| a.name<=>b.name}.each_with_index do |i, j|
-        puts "#{j+1}. #{i.name} - #{i.genre.name}"
+      artist.songs.sort{|artist1,artist2| artist1.name<=>artist2.name}.each_with_index do |x, y|
+        puts "#{y+1}. #{x.name} - #{x.genre.name}"
       end 
     end 
   end 
 
   def list_songs_by_genre
     puts "Please enter the name of a genre:"
-    input = gets.chomp
+    user_input = gets.chomp
     if genre = Genre.find_by_name(input)
-      genre.songs.sort{|a,b| a.name<=>b.name}.each_with_index do |i, j|
-        puts "#{j+1}. #{i.artist.name} - #{i.name}"
+      genre.songs.sort{|genre1,genre2| genre1.name<=>genre2.name}.each_with_index do |x, y|
+        puts "#{y+1}. #{x.artist.name} - #{x.name}"
       end 
     end 
   end 
 
   def play_song
     puts "Which song number would you like to play?"
-    input = gets.to_i
-    if input != 0 && input < Song.all.length
-      array = Song.all.sort{|a,b| a.name <=> b.name}
-      song = array[input-1]
-      # binding.pry
+    user_input = gets.to_i
+    if user_input < Song.all.length && user_input != 0
+      arr = Song.all.sort{|song1,song2| song1.name <=> song2.name}
+      song = arr[user_input-1]
       puts "Playing #{song.name} by #{song.artist.name}"
       # binding.pry
     end 

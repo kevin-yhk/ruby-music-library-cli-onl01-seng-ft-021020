@@ -1,5 +1,7 @@
 class Song
+  
   extend Concerns::Findable
+  
   attr_accessor :name
   attr_reader :artist, :genre
   @@all = []
@@ -13,8 +15,7 @@ class Song
     if genre != nil 
       self.genre=genre
     end 
-    # self.artist=artist if artist != nil 
-    # binding.pry
+    save
   end 
 
   def self.all

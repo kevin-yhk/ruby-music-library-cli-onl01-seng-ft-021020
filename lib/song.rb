@@ -1,6 +1,5 @@
 class Song
   
-  extend Concerns::Findable
   attr_accessor :name
   attr_reader :artist, :genre
   
@@ -47,4 +46,6 @@ class Song
     @genre=genre 
     @genre.songs << self if !@genre.songs.include?(self)
   end 
+  
+  def find_by_name
 end 

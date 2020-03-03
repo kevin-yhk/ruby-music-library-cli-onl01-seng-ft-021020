@@ -6,8 +6,8 @@ class MusicLibraryController
   end 
   
   def call 
-    input = ""
-    while input != "exit" do 
+    user_input = ""
+    while user_input != "exit" do 
       puts "Welcome to your music library!"
       puts "To list all of your songs, enter 'list songs'."
       puts "To list all of the artists in your library, enter 'list artists'."
@@ -19,7 +19,7 @@ class MusicLibraryController
       puts "What would you like to do?"
       input = gets.chomp
 
-      case input 
+      case user_input 
       when "list songs"
         list_songs
       when "list artists"
@@ -56,5 +56,6 @@ class MusicLibraryController
   
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
+    user_input 
   end 
 end 
